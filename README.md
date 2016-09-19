@@ -143,7 +143,7 @@ which is a table of parameters for tweening a value in an object.
 
 The same as Rope:tween, but does not block. Useful for setting off a bunch of animations at the same time. (Or you can use Rope:fork).
 
-### `Rope:parallel(...)`
+#### `Rope:parallel(...)`
 
 Create any number of knew rope (like Rope:fork), but block until they are all complete or one errors out.
 Returns success in the first argument, or false and an error message in the second argument if a rope throws
