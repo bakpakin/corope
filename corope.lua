@@ -119,7 +119,7 @@ function Bundle:rope(fn, ...)
     local index = #ropes + 1
     local rope = newRope(fn, ...)
     rope.index = index
-    rope.bundle = bundle
+    rope.bundle = self
     ropes[index] = rope
     return rope
 end
