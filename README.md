@@ -149,6 +149,11 @@ Create any number of knew rope (like Rope:fork), but block until they are all co
 Returns success in the first argument, or false and an error message in the second argument if a rope throws
 an error. Takes a variable number of dispatch functions, each of which will be used to create a new Rope.
 
+## More Examples
+
+Examples are in the examples directory. Currently there are only examples for the LOVE game engine. To run
+the examples, just cd into the specific example directory and run with love.
+
 ## TODO
 
 * Unit tests
