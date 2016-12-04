@@ -69,6 +69,7 @@ function Bundle:suspend(rope)
     assert(rope.bundle == self, 'rope does not belong to this bundle')
     assert(not rope.paused, 'cannot suspend already suspended rope')
     local ts = self.ropes
+    local index = rope.index
     rope.paused = true
     ts[index] = ts[#ts]
     ts[index].index = index
