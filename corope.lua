@@ -309,14 +309,8 @@ function Rope:parallel(...)
         ropes[pindex].pindex = pindex
         ropes[#ropes] = nil
         if #ropes == 0 then
-            self:signal(ropes, false) -- no error
+            rope:signal(ropes, false) -- no error
         end
-    end
-    local function errhand(err)
-        for i = 1, #ropes do
-            bundle:suspend(ropes[i])
-        end
-        self:signal(ropes, err) -- we errored out
     end
     for i = 1, n do
         local fn = select(i, ...)
@@ -325,11 +319,17 @@ function Rope:parallel(...)
             onDone(r)
         end
         local rope = bundle(wrappedfn)
+        local function errhand(err)
+            for i = 1, #ropes do
+                bundle:suspend(ropes[i])
+            end
+            rope:signal(ropes, err) -- we errored out
+        end
         rope.errhand = errhand
         rope.pindex = i
         ropes[#ropes + 1] = rope
     end
-    self:signal(ropes)
+    return self:listen(ropes)
 end
 
 return newBundle
